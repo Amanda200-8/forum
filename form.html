@@ -1,0 +1,59 @@
+<!-- Arquivo: src/main/resources/templates/form.html -->
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${vaga.id} ? 'Editar Vaga' : 'Cadastrar Nova Vaga'">Formulário de Vaga</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="header-title">Portal de Vagas</h1>
+        </header>
+
+        <section class="form-section">
+            <h2 th:text="${vaga.id} ? 'Editar Vaga' : 'Cadastrar Nova Vaga'">Formulário</h2>
+            <form th:action="@{/vagas/salvar}" th:object="${vaga}" method="post" class="form">
+                <input type="hidden" th:field="*{id}">
+
+                <div class="form-group">
+                    <label for="titulo">Título da Vaga</label>
+                    <input type="text" id="titulo" th:field="*{titulo}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="empresa">Empresa</label>
+                    <input type="text" id="empresa" th:field="*{empresa}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="localizacao">Localização</label>
+                    <input type="text" id="localizacao" th:field="*{localizacao}" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="salario">Salário</label>
+                    <input type="text" id="salario" th:field="*{salario}" placeholder="Ex: R$ 5.000 - R$ 7.000" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="descricao">Descrição</label>
+                    <textarea id="descricao" th:field="*{descricao}" rows="5" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="requisitos">Requisitos (separados por vírgula)</label>
+                    <input type="text" id="requisitos" th:field="*{requisitos}">
+                </div>
+
+                <div class="form-actions">
+                    <a th:href="@{/vagas}" class="button button-secondary">Cancelar</a>
+                    <button type="submit" class="button button-primary">Salvar</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</body>
+</html>
